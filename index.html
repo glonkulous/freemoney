@@ -63,7 +63,6 @@ function resetStats() {
 	money = 0;
 	multiplier = 1;
 	workers = 0;
-
 	costOfMultiplier = 15;
 	costOfWorker = 50;
 }
@@ -89,8 +88,8 @@ function work() {
 }
 
 function doPrestige() {
+    sound("click")
 	if (money >= costOfPrestige) {
-	    sound("click");
 		resetStats()
 		prestige += 1
 		costOfPrestige *= 2
@@ -125,9 +124,8 @@ Current multiplier: x<span id="multiplier">1</span><br><br>
 <input type="button" id="workerButton" value="Hire a button clicker to click every two seconds for 50 bucks" onclick="addWorker()" /><br>
 Current amount of workers: <span id="workers">0</span><br><br>
 
-<input type="button" id="prestigeButton" value="Prestige for 10000 bucks." onclick="doPrestige()" /><br>
+<input type="button" id="prestigeButton" value="Prestige for 10000 bucks" onclick="doPrestige()" /><br>
 Current amount of prestiges: <span id="prestige">0</span>
-
 </center>
 
 </body>
