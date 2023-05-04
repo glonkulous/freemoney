@@ -8,9 +8,11 @@
 <script type="text/javascript">
 
 var money = 0;
-var multiplier = 1;
+var multiplier = 123121;
 var workers = 0;
 var prestige = 0;
+
+var working = [];
 
 var costOfMultiplier = 15;
 var costOfWorker = 50;
@@ -81,19 +83,25 @@ function addWorker() {
     }
 }
 function work() {
-    setInterval(function() {
+    working = setInterval(function() {
         money = money+1*multiplier;
         updateCash();
     }, 2000);
+}
+
+function stopWork() {
+    clearInterval(working)
 }
 
 function doPrestige() {
     sound("click")
 	if (money >= costOfPrestige) {
 		resetStats()
+        stopWork()
 		prestige += 1
 		costOfPrestige *= 2
 		updateCash();
+        
 	} else {
         sound("buzzer")
         alert("YOU DON'T HAVE ENOUGH MONEY YET!!");
@@ -124,8 +132,8 @@ Current multiplier: x<span id="multiplier">1</span><br><br>
 <input type="button" id="workerButton" value="Hire a button clicker to click every two seconds for 50 bucks" onclick="addWorker()" /><br>
 Current amount of workers: <span id="workers">0</span><br><br>
 
-<input type="button" id="prestigeButton" value="Prestige for 10000 bucks" onclick="doPrestige()" /><br>
-Current amount of prestiges: <span id="prestige">0</span>
+<!-- <input type="button" id="prestigeButton" value="Prestige for 10000 bucks" onclick="doPrestige()" /><br>
+Current amount of prestiges: <span id="prestige">0</span> -->
 </center>
 
 </body>
