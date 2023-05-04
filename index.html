@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
-<script src="buttonplusone.js"></script>
 
 <head>
+
 <title>Free money</title>
+
+<script type="text/javascript">
+
+var money = 1;
+document.getElementById("money").innerHTML = String(money)
+
+function plusone(); {
+    money = money+1
+    document.getElementById("money").innerHTML = String(money)
+}
+
+</script>
 </head>
 
 <body>
