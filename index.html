@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -8,43 +8,86 @@
 <script type="text/javascript">
 
 var money = 0;
-var multiplier =1;
-document.getElementById("money").innerHTML = String(money);
-document.getElementById("multipier").innerHTML = String(multiplier);
+var multiplier = 1;
+var workers = 0;
 
-function addmultiplier() {
-    if (money >= 15) {
-    money = money-15;
-    multiplier = multiplier+1;
-    document.getElementById("money").innerHTML = String(money);
+var costOfMultiplier = 15;
+var costOfWorker = 50;
+
+function updateCash() {
+    document.getElementById("money").innerHTML = String(money+"$");
     document.getElementById("multiplier").innerHTML = String(multiplier);
+    document.getElementById("workers").innerHTML = String(workers);
+    document.getElementById("multiplierButton").value = String("Buy multiplier for "+costOfMultiplier+" bucks")
+    document.getElementById("workerButton").value = String("Hire a button clicker to click every two seconds for "+costOfWorker+" bucks")
+}
+
+function sound(whichSound) {
+    var audio = document.getElementById(whichSound);
+    audio.currentTime = 0
+    audio.play();
+}
+
+function addMultiplier() {
+    sound("click");
+    if (money >= costOfMultiplier) {
+    money = money-costOfMultiplier;
+    multiplier = multiplier+1;
+    costOfMultiplier = Math.round(costOfMultiplier*1.5);
+    updateCash();
     } else {
+        sound("buzzer")
         alert("YOU DON'T HAVE ENOUGH MONEY YET!!");
     }
 }
 
-function plusamount() {
-    var audio = document.getElementById("audio");
-    audio.currentTime = 0
-    audio.play();
-    money = money+1*multiplier;
-    document.getElementById("money").innerHTML = String(money);
+function plusAmount() {
+    sound("click");
+    money = money+1*multiplier; 
+    updateCash();
+}
+
+function addWorker() {
+    sound("click")
+    if (money >= costOfWorker) {
+        money = money-costOfWorker
+        workers = workers+1
+        costOfWorker = Math.round(costOfWorker*1.2)
+        work();
+        updateCash();
+    } else {
+        sound("buzzer")
+        alert("YOU DON'T HAVE ENOUGH MONEY YET!!");
+    }
+}
+function work() {
+    setInterval(function() {
+        money = money+1*multiplier;
+        updateCash();
+    }, 2000);
 }
 
 </script>
-<audio id="audio" src="https://cdn.freesound.org/previews/349/349281_2104797-lq.mp3"></audio>
+
+<audio id="click" src="https://cdn.freesound.org/previews/348/348238_4067257-lq.mp3"></audio>
+<audio id="buzzer" src="https://cdn.freesound.org/previews/419/419023_215268-lq.mp3"></audio>
 
 </head>
+
 
 <body>
 
 <center>
 <h1>It's free money</h1><br>
 <p1>Click the button, get free money.</p1><br>
-<input type="button" id="plusButton" value="Get cash" onclick="plusamount()"/><br>
-Current amount: <span id="money">0</span><br>
-<input type="button" id="multiplierButton" value="Buy multiplier for 15 bucks" onclick="addmultiplier()" /><br>
-Current multiplier: x<span id="multiplier">1</span>
+<input type="button" id="plusButton" value="Get cash" onclick="plusAmount()"/><br>
+Current amount: <span id="money">0$</span><br><br>
+
+<input type="button" id="multiplierButton" value="Buy multiplier for 15 bucks" onclick="addMultiplier()" /><br>
+Current multiplier: x<span id="multiplier">1</span><br><br>
+
+<input type="button" id="workerButton" value="Hire a button clicker to click every two seconds for 50 bucks" onclick="addWorker()" /><br>
+Current amount of workers: <span id="workers">0</span>
 </center>
 
 </body>
