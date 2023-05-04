@@ -25,6 +25,7 @@ function addmultiplier() {
 
 function plusamount() {
     var audio = document.getElementById("audio");
+    audio.currentTime = 0
     audio.play();
     money = money+1*multiplier;
     document.getElementById("money").innerHTML = String(money);
