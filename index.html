@@ -14,6 +14,13 @@ var workers = 0;
 var costOfMultiplier = 15;
 var costOfWorker = 50;
 
+var audioVolume = 100
+
+function updateVolume() {
+    audioVolume = document.getElementById("volumeSlider").value
+    document.getElementById("volume").innerHTML = String(audioVolume)
+}
+
 function updateCash() {
     document.getElementById("money").innerHTML = String(money+"$");
     document.getElementById("multiplier").innerHTML = String(multiplier);
@@ -22,15 +29,15 @@ function updateCash() {
     document.getElementById("workerButton").value = String("Hire a button clicker to click every two seconds for "+costOfWorker+" bucks")
 }
 
-function sound(whichSound,whatVolume) {
+function sound(whichSound) {
     var audio = document.getElementById(whichSound);
-    audio.volume = whatVolume
+    audio.volume = audioVolume/100
     audio.currentTime = 0
     audio.play();
 }
 
 function addMultiplier() {
-    sound("click",0.2);
+    sound("click");
     if (money >= costOfMultiplier) {
     money = money-costOfMultiplier;
     multiplier = multiplier+1;
@@ -43,13 +50,13 @@ function addMultiplier() {
 }
 
 function plusAmount() {
-    sound("click",0.2);
+    sound("click");
     money = money+1*multiplier; 
     updateCash();
 }
 
 function addWorker() {
-    sound("click",0.2)
+    sound("click")
     if (money >= costOfWorker) {
         money = money-costOfWorker
         workers = workers+1
@@ -77,6 +84,9 @@ function work() {
 
 
 <body>
+
+<input type="range" min="0" max="100" value="100" id="volumeSlider" onInput="updateVolume()">
+Volume: <span id="volume">100</span>
 
 <center>
 <h1>It's free money</h1><br>
