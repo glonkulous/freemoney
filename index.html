@@ -24,11 +24,15 @@ function addmultiplier() {
 }
 
 function plusamount() {
+    var audio = document.getElementById("audio");
+    audio.play();
     money = money+1*multiplier;
     document.getElementById("money").innerHTML = String(money);
 }
 
 </script>
+<audio id="audio" src="https://cdn.freesound.org/previews/349/349281_2104797-lq.mp3"></audio>
+
 </head>
 
 <body>
@@ -41,6 +45,7 @@ Current amount: <span id="money">0</span><br>
 <input type="button" id="multiplierButton" value="Buy multiplier for 15 bucks" onclick="addmultiplier()" /><br>
 Current multiplier: x<span id="multiplier">1</span>
 </center>
+
 </body>
 
 
