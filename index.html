@@ -16,7 +16,8 @@ function addmultiplier() {
     if (money >= 15) {
     money = money-15;
     multiplier = multiplier+1;
-    document.getElementById("multipier").innerHTML = String(multiplier);
+    document.getElementById("money").innerHTML = String(money);
+    document.getElementById("multiplier").innerHTML = String(multiplier);
     } else {
         alert("YOU DON'T HAVE ENOUGH MONEY YET!!");
     }
@@ -37,7 +38,7 @@ function plusamount() {
 <p1><center>Click on a button, get free money.</center></p1>
 <center><input type="button" id="plusButton" value="Get cash" onclick="plusamount()" /></center>
 <center>Current amount: <span id="money">0</span></center> 
-<center><input type="button" id="multiplierButton" value="Buy multiplier" onclick="addmultiplier()" /></center>
+<center><input type="button" id="multiplierButton" value="Buy multiplier for 15 bucks" onclick="addmultiplier()" /></center>
 <center>Current multiplier: x<span id="multiplier">1</span></center>
 </body>
 
