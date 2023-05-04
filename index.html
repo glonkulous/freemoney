@@ -22,14 +22,15 @@ function updateCash() {
     document.getElementById("workerButton").value = String("Hire a button clicker to click every two seconds for "+costOfWorker+" bucks")
 }
 
-function sound(whichSound) {
+function sound(whichSound,whatVolume) {
     var audio = document.getElementById(whichSound);
+    audio.volume = whatVolume
     audio.currentTime = 0
     audio.play();
 }
 
 function addMultiplier() {
-    sound("click");
+    sound("click",0.2);
     if (money >= costOfMultiplier) {
     money = money-costOfMultiplier;
     multiplier = multiplier+1;
@@ -42,13 +43,13 @@ function addMultiplier() {
 }
 
 function plusAmount() {
-    sound("click");
+    sound("click",0.2);
     money = money+1*multiplier; 
     updateCash();
 }
 
 function addWorker() {
-    sound("click")
+    sound("click",0.2)
     if (money >= costOfWorker) {
         money = money-costOfWorker
         workers = workers+1
